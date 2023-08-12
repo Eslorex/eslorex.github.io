@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daedalus - Online Sellers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.css">
+    <style>
+        @font-face {
+            font-family: 'Cardiff-5a2v';
+            src: url('Cardiff-5a2v.ttf') format('truetype'); /* URL to the TTF file */
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'Cardiff-5a2v', sans-serif; /* Using the custom font */
+            margin: 0;
+            padding: 0;
+            font: bold;
+            font-size: 29px;
+            overflow-x: hidden;
+        }
+
+        /* Slide-in animation */
+        @keyframes slideIn {
+            0% {
+                transform: translateX(50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .animate {
+            animation: slideIn 0.4s ease forwards; /* Apply the animation */
+        }
+
+        #fullpage .section {
+            padding: 2em 5%;
+            color: #fff;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+            height: 60vh; /* 60% of the viewport height */
+            filter: grayscale(100%) brightness(100%); /* Grayed out and darker */
+            transition: filter 0.3s, transform 0.3s; /* Transition effect */
+        }
+
+        #fullpage .section:hover {
+            filter: brightness(100%); /* Slightly less dark when hovered, no grayscale */
+            transform: scale(1.05);
+        }
+
+        #fullpage .section h2, #fullpage .section p {
+            opacity: 0; /* Initially hidden */
+        }
+
+        #fullpage .section h2 {
+            font-size: 29px; /* Set font size */
+            margin: 0 auto; /* Center-align */
+            text-align: center; /* Center-align text inside the element */
+        }
+
+        #fullpage .section h2 span {
+            background-color: rgba(0, 0, 0, .9); /* Slightly gray background */
+            border-radius: 10px; /* Rounded corners */
+            padding: 10px; /* Padding around the text */
+            display: inline; /* Inline element */
+        }
+
+        #fullpage .section p {
+            font-size: 29px; /* Set font size */
+            background-color: rgba(0, 0, 0, .9); /* Slightly gray background */
+            border-radius: 10px; /* Rounded corners */
+            padding: 10px; /* Padding around the text */
+            display: inline-block; /* To wrap the background around the text */
+        }
+
+        #section1 {
+            background-image: url('file:///C:/Users/basar/Desktop/image1.png');
+        }
+
+        #section2 {
+            background-image: url('file:///C:/Users/basar/Desktop/image2.png');
+        }
+
+        #section3 {
+            background-image: url('file:///C:/Users/basar/Desktop/image3.png');
+        }
+
+        #contact {
+            background-image: url('file:///C:/Users/basar/Desktop/image4.png');
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+        }
+
+        /* Mobile responsiveness */
+        @media only screen and (max-width: 768px) {
+            #fullpage .section {
+                padding: 1em 2%;
+                font-size: 0.9em;
+            }
+
+            #fullpage .section h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="fullpage">
+        <div class="section" id="section1">
+            <h2><span>Welcome to Daedalus</span></h2>
+            <p>We are a Retail Store based in Miami, Florida. You can find our products on online services like Amazon, Etsy, Ebay and etc.</p>
+        </div>
+        <div class="section" id="section2">
+            <h2><span>About Us</span></h2>
+            <p>We are a team of 5 dedicated online sellers, offering the best products and services. With our physical store located in Miami, we aim to provide a seamless shopping experience both online and offline.</p>
+        </div>
+        <div class="section" id="section3">
+            <h2><span>Why should you sell to us in bulk?</span></h2>
+            <p>We are a Retail Store based in Miami, and we try to sell products that are heavily in demand but don't have the supply, especially here in Miami, we work on pushing our products out as much as we can, the better the performance the more we purchase. If you would be interested in selling to us and are also confident your product would be able to sell well over here in Miami, then contact us below.</p>
+        </div>
+        <div class="section" id="contact">
+            <h2><span>Contact Information</span></h2>
+            <p>Phone Number: (954) 654-6468</p>
+            <p>Mail: daedalusmediallc@outlook.com</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"></script>
+    <script>
+        new fullpage('#fullpage', {
+            autoScrolling: true,
+            scrollHorizontally: true,
+            onLeave: function(origin, destination, direction) {
+                // Remove animation class from the texts in the section being left
+                origin.item.querySelectorAll('h2, p').forEach(function(item) {
+                    item.classList.remove('animate');
+                });
+            },
+            afterLoad: function(origin, destination, direction) {
+                // Add animation class to the texts in the section being entered
+                destination.item.querySelectorAll('h2, p').forEach(function(item) {
+                    item.classList.add('animate');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
