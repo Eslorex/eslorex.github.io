@@ -8,89 +8,59 @@
     <style>
         @font-face {
             font-family: 'Cardiff-5a2v';
-            src: url('Cardiff-5a2v.ttf') format('truetype'); /* URL to the TTF file */
+            src: url('Cardiff-5a2v.ttf') format('truetype');
             font-weight: normal;
             font-style: normal;
         }
 
         body {
-            font-family: 'Cardiff-5a2v', sans-serif; /* Using the custom font */
+            font-family: 'Cardiff-5a2v', sans-serif;
             margin: 0;
             padding: 0;
             font: bold;
-            font-size: 29px;
+            font-size: calc(1vw + 1vh + 0.5vmin);
             overflow-x: hidden;
         }
 
-        /* Slide-in animation */
-        @keyframes slideIn {
-            0% {
-                transform: translateX(50px);
-                opacity: 0;
-            }
-            100% {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        .animate {
-            animation: slideIn 0.4s ease forwards; /* Apply the animation */
-        }
-
         #fullpage .section {
-            padding: 2em 5%;
+            
+            justify-content: center;
+            align-items: center;
+            padding: 1em 5%;
             color: #fff;
             text-align: center;
             background-size: cover;
             background-position: center;
-            height: 60vh; /* 60% of the viewport height */
-            filter: grayscale(100%) brightness(100%); /* Grayed out and darker */
-            transition: filter 0.3s, transform 0.3s; /* Transition effect */
+            height: 100vh;
+            filter: grayscale(100%) brightness(100%);
+            transition: filter 0.3s ease, transform 0.3s ease;
         }
 
-        #fullpage .section:hover {
-            filter: brightness(100%); /* Slightly less dark when hovered, no grayscale */
+        #fullpage .section.active {
+            filter: brightness(100%);
             transform: scale(1.05);
         }
 
         #fullpage .section h2, #fullpage .section p {
-            opacity: 0; /* Initially hidden */
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 10px;
+            display: block; /* Make this a block element */
+            margin: 10px auto; /* Center horizontally */
+            line-height: 1.4;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
-        #fullpage .section h2 {
-            font-size: 29px; /* Set font size */
-            margin: 0 auto; /* Center-align */
-            text-align: center; /* Center-align text inside the element */
+        #fullpage .section h2.animate, #fullpage .section p.animate {
+            opacity: 1;
+            transform: translateX(0);
         }
 
-        #fullpage .section h2 span {
-            background-color: rgba(0, 0, 0, .9); /* Slightly gray background */
-            border-radius: 10px; /* Rounded corners */
-            padding: 10px; /* Padding around the text */
-            display: inline; /* Inline element */
-        }
-
-        #fullpage .section p {
-            font-size: 29px; /* Set font size */
-            background-color: rgba(0, 0, 0, .9); /* Slightly gray background */
-            border-radius: 10px; /* Rounded corners */
-            padding: 10px; /* Padding around the text */
-            display: inline-block; /* To wrap the background around the text */
-        }
-
-        #section1 {
-            background-image: url('image1.png');
-        }
-
-        #section2 {
-            background-image: url('image2.png');
-        }
-
-        #section3 {
-            background-image: url('image3.png');
-        }
-
+        #section1 { background-image: url('image1.png'); }
+        #section2 { background-image: url('image2.png'); }
+        #section3 { background-image: url('image3.png'); }
         #contact {
             background-image: url('image4.png');
             background-color: #333;
@@ -99,16 +69,12 @@
             text-align: center;
         }
 
-        /* Mobile responsiveness */
         @media only screen and (max-width: 768px) {
-            #fullpage .section {
-                padding: 1em 2%;
-                font-size: 0.9em;
-            }
+            /* ... existing media query content ... */
+        }
 
-            #fullpage .section h2 {
-                font-size: 1.5em;
-            }
+        @media only screen and (max-width: 350px) {
+            /* ... existing media query content ... */
         }
     </style>
 </head>
@@ -139,13 +105,11 @@
             autoScrolling: true,
             scrollHorizontally: true,
             onLeave: function(origin, destination, direction) {
-                // Remove animation class from the texts in the section being left
                 origin.item.querySelectorAll('h2, p').forEach(function(item) {
                     item.classList.remove('animate');
                 });
             },
             afterLoad: function(origin, destination, direction) {
-                // Add animation class to the texts in the section being entered
                 destination.item.querySelectorAll('h2, p').forEach(function(item) {
                     item.classList.add('animate');
                 });
